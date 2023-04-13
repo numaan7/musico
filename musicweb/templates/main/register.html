@@ -1,0 +1,34 @@
+{% extends 'musico-master/index.html' %}
+{% block title %}Sign up - Create Your Account{% endblock title %}
+
+{% block body %}
+  
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="single_slider  d-flex align-items-center slider_bg_1 overlay2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="slider_text text-center ">
+                        <h3>Signup </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- slider_area_end -->
+
+{% load crispy_forms_tags %}  
+<!--Register--> 
+<div class="container py-5">
+   
+	<h1>Register</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{register_form|crispy}}                    
+		<button class="btn btn-primary" type="submit">Register</button>
+	</form>
+	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+</div>
+{% endblock body %}

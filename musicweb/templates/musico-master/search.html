@@ -1,0 +1,99 @@
+{% extends 'musico-master/index.html' %}
+{% block title %}Search{% endblock title %}
+{% block body %}
+
+
+<div class="bradcam_area breadcam_bg_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Search</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="music_area music_gallery inc_padding">
+    <div class="container">
+      
+       <h2 class="text-center"><hr>Tracks :Results {{trckcont}}<hr></h2>
+
+        {% for freetrack in tracks %}
+        <div class="row align-items-center justify-content-center mb-20">
+            <div class="col-xl-10">
+                <div class="row align-items-center">
+                            <div class="col-xl-9 col-md-9">
+                                <div class="music_field">
+                                        <div class="thumb">
+                                                <img style="width: 148px; object-fit: cover; height: 148px;" src="{{freetrack.image.url}}" alt="">
+                                            </div>
+                                            <div class="audio_name">
+                                                <div class="name">
+                                                    <h4>{{freetrack.song_name}}</h4>
+                                                    <p>{{freetrack.date}}</p>
+                                                </div>
+                                                    <audio preload="auto" controls>
+                                                            <source src="{{freetrack.song}}">
+                                                        </audio>
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                
+                                {% if freetrack.price %}
+                                 
+                                <div class="music_btn">
+                                        <a href="/product/{{freetrack.id}}"class="boxed-btn">Buy Now</a>
+                                </div>
+                                {% else %}
+                                <div class="music_btn">
+                                    <a href="{{freetrack.song.url}}" download class="boxed-btn">Download Song</a>
+                            </div>
+                                {% endif %}
+                            </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+<hr>
+<h2 class="text-center">Blogs : Results {{blogcont}}</h2>
+<hr>
+{% for blogpost in blog %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mb-5 mb-lg-0">
+            <div class="blog_left_sidebar">
+                {% for blogpost in blog %}
+                <article class="blog_item">
+                    <div class="blog_item_img">
+                        <img class="card-img rounded-0" src="{{blogpost.image.url}}" alt="">
+                        <a href="/blog/{{blogpost.url}}" class="blog_item_date">
+                            <h3>{{blogpost.date|date:"d"}}</h3>
+                            <p>{{blogpost.date|date:"M"}}</p>
+                        </a>
+                    </div>
+
+                    <div class="blog_details">
+                        <a class="d-inline-block" href="/blog/{{blogpost.url}}">
+                            <h2>{{blogpost.title|title}}</h2>
+                        </a>
+                        <p>{{blogpost.body|capfirst}}</p>
+                        <ul class="blog-info-link">
+                            <li><a href="/blog/?author={{blogpost.Author}}"><i class="fa fa-user"></i> {{blogpost.Author|capfirst}}</a></li>
+                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                        </ul>
+                    </div>
+                </article>
+                {% endfor %}
+                
+    
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock body %}

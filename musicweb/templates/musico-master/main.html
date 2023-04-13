@@ -1,0 +1,73 @@
+{% extends 'musico-master/index.html' %}
+{% block title %}Checkout{% endblock title %}
+{% block body %}
+ <!-- slider_area_start -->
+ <div class="slider_area">
+    <div class="single_slider  d-flex align-items-center slider_bg_1 overlay2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="slider_text text-center ">
+                        <h3>Checkout </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- slider_area_end -->
+
+<div class="w-100 p-4 container text-center">
+    <div class="card m-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{product.image.url}}" alt="{{product.song_name}}" class="img-fluid">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <h3>Song: {{product.song_name|title}}</h3>
+                    <p>Price: ₹{{product.price}} </p>
+                    <p>Artist: <a href= "/songs/?artist={{product.artist}}">{{product.artist|title}}</a></p>
+                   <p>Genere: <a href="/songs/?genere={{product.genere}}">{{product.genere|title}}</a></p>
+                    <p>Details: {{product.desc|capfirst}}</p>
+                </div>
+               
+                
+            </div>
+
+        </div>
+      </div>
+<button class="genric-btn primary-border e-large " id="rzp-button1">Buy Now</button>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_FfNuJ70du4uyfg", // Enter the Key ID generated from the Dashboard
+    "amount": "{{prdtpr}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "http://127.0.0.1:8000/status/",
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+
+{% endblock body %}

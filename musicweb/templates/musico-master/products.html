@@ -1,0 +1,83 @@
+{% extends 'musico-master/index.html' %}
+{% block title %}My Tracks{% endblock title %}
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    
+    {% block body %}
+   
+    <!-- bradcam_area  -->
+    <div class="bradcam_area breadcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>My Tracks</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    <!-- music_area  -->
+    <div class="music_area music_gallery inc_padding">
+        <div class="container">
+          
+           <h2 class="text-center"><hr>Tracks<hr></h2>
+
+            {% for freetrack in tracks %}
+            <div class="row align-items-center justify-content-center mb-20">
+                <div class="col-xl-10">
+                    <div class="row align-items-center">
+                                <div class="col-xl-9 col-md-9">
+                                    <div class="music_field">
+                                            <div class="thumb">
+                                                    <img style="width: 148px; object-fit: cover; height: 148px;" src="{{freetrack.image.url}}" alt="">
+                                                </div>
+                                                <div class="audio_name">
+                                                    <div class="name">
+                                                        <h4>{{freetrack.song_name}}</h4>
+                                                        <p>{{freetrack.date}}</p>
+                                                    </div>
+                                                        <audio preload="auto" controls>
+                                                                <source src="{{freetrack.song}}">
+                                                            </audio>
+                                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-3">
+                                    
+                                    {% if freetrack.price %}
+                                     
+                                    <div class="music_btn">
+                                            <a href="/product/{{freetrack.id}}"class="boxed-btn">Buy Now</a>
+                                    </div>
+                                    {% else %}
+                                    <div class="music_btn">
+                                        <a href="{{freetrack.song.url}}" download class="boxed-btn">Download Song</a>
+                                </div>
+                                    {% endif %}
+                                </div>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+           
+
+            
+        </div>
+    </div>
+    <!-- music_area end  -->
+
+   
+
+  
+
+    <!-- link that opens popup -->
+
+    
+            {% endblock body %}
