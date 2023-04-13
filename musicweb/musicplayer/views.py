@@ -10,7 +10,7 @@ from django.contrib.auth import login, authenticate #add this
 from django.contrib.auth.forms import AuthenticationForm #add this
 
 import razorpay
-client = razorpay.Client(auth=("rzp_test_FfNuJ70du4uyfg", "MzdZPJIBglvEhhGVryCbqXDe"))
+client = razorpay.Client(auth=("razor pay","razor pay key"))
 dorder_id=''
 def newsletter(email):
 	newsletter=Newsletter(email=email)
